@@ -40,6 +40,11 @@ class ntp (
   $disable_monitor     = false,
 ) {
 
+  # validate type as array or fail
+  if is_array($servers) != true {
+    fail('ntp::servers must be an array.')
+  }
+
   # validate type and convert string to boolean if necessary
   if is_string($package_latest) == true {
     $my_package_latest = str2bool($package_latest)
